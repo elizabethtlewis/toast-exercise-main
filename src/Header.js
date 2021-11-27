@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Chance from 'chance';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
 import { saveFormSubmission, fetchLikedFormSubmissions } from './service/mockServer';
 
 
@@ -26,6 +28,36 @@ export function createFormSubmission() {
 }
 
 export default function Header() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    saveFormSubmission(createFormSubmission());
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    console.log(reason)
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        LIKE
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <Box sx={{flexGrow: 1}}>
@@ -46,10 +78,17 @@ export default function Header() {
             variant="contained"
             size="small"
             color="secondary"
-            onClick={() => saveFormSubmission(createFormSubmission())}
+            onClick={handleClick}
           >
             New Submission
           </Button>
+          <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              message="Note archived"
+              action={action}
+            />
         </Toolbar>
       </AppBar>
     </Box>
