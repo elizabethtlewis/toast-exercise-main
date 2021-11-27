@@ -3,6 +3,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 export default function Content() {
+
+
+
   return (
     <Box sx={{marginTop: 3}}>
       <Typography variant="h4">Liked Form Submissions</Typography>
@@ -10,7 +13,7 @@ export default function Content() {
       <Typography variant="body1" sx={{fontStyle: 'italic', marginTop: 1}}>
         TODO: List of liked submissions here (delete this line)
       </Typography>
-      {console.log(JSON.parse(localStorage.getItem('formSubmissions')))}
+      {/* {console.log(JSON.parse(localStorage.getItem('formSubmissions')))} */}
     </Box>
   );
 }

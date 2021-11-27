@@ -36,12 +36,26 @@ export default function Header() {
   };
 
   const handleClose = (event, reason) => {
-    console.log(reason)
+    // console.log(reason)
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
+
+  function getContent() {
+
+    console.log(localStorage.getItem('formSubmissions'))
+    console.log(JSON.parse(localStorage.getItem('formSubmissions')));
+
+    let data = JSON.parse(localStorage.getItem('formSubmissions'));
+    data = data[data.length-1];
+
+    let result = "";
+    result = result.concat(data.data['firstName'], " ", data.data['lastName'], " ", data.data['email']);
+
+    return result;
+  }
 
   const action = (
     <React.Fragment>
@@ -86,7 +100,7 @@ export default function Header() {
               open={open}
               autoHideDuration={6000}
               onClose={handleClose}
-              message="Note archived"
+              message={getContent()}
               action={action}
             />
         </Toolbar>
