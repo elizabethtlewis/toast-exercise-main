@@ -10,6 +10,7 @@ export default function Content() {
       <Typography variant="body1" sx={{fontStyle: 'italic', marginTop: 1}}>
         TODO: List of liked submissions here (delete this line)
       </Typography>
+      {console.log(JSON.parse(localStorage.getItem('formSubmissions')))}
     </Box>
   );
 }
