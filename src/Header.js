@@ -10,20 +10,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Chance from 'chance';
 import { saveFormSubmission, fetchLikedFormSubmissions } from './service/mockServer';
 
-export default function Header() {
+
+export function createFormSubmission() {
   const chance = new Chance();
-  function createFormSubmission() {
-    let formSubmission = {
-      id: chance.guid(),
-      data: {
-        email: chance.email(),
-        firstName: chance.first(),
-        lastName: chance.last(),
-        liked: true,
-      },
-    };
-    return formSubmission;
-  }
+  let formSubmission = {
+    id: chance.guid(),
+    data: {
+      email: chance.email(),
+      firstName: chance.first(),
+      lastName: chance.last(),
+      liked: true,
+    },
+  };
+  return formSubmission;
+}
+
+export default function Header() {
+
   return (
     <Box sx={{flexGrow: 1}}>
       <AppBar position="static">
@@ -45,8 +48,6 @@ export default function Header() {
             color="secondary"
             onClick={() => saveFormSubmission(createFormSubmission())}
           >
-            {console.log(JSON.parse(localStorage.getItem('formSubmissions')))}
-            {console.log(fetchLikedFormSubmissions())}
             New Submission
           </Button>
         </Toolbar>
