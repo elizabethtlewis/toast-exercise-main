@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Chance from 'chance';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
-import { saveFormSubmission, fetchLikedFormSubmissions } from './service/mockServer';
+import { saveFormSubmission } from './service/mockServer';
 
 
 export function createFormSubmission() {
@@ -76,7 +76,7 @@ export default function Header() {
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={() => handleClose}
+        onClick={handleClose}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
