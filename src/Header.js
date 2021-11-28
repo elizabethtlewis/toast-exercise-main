@@ -21,7 +21,7 @@ export function createFormSubmission() {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      liked: true,
+      liked: false,
     },
   };
   return formSubmission;
@@ -36,17 +36,23 @@ export default function Header() {
   };
 
   const handleClose = (event, reason) => {
-    // console.log(reason)
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
 
+  // TODO
+  // updateLike changes the 'liked' param in the current formSubmission to true
+  function updateLike() {
+    handleClose();
+  }
+
+  // This function retrieves the users first name, last name, and email from local storage
   function getContent() {
 
-    console.log(localStorage.getItem('formSubmissions'))
-    console.log(JSON.parse(localStorage.getItem('formSubmissions')));
+    // console.log(localStorage.getItem('formSubmissions'))
+    // console.log(JSON.parse(localStorage.getItem('formSubmissions')));
 
     let data = JSON.parse(localStorage.getItem('formSubmissions'));
     data = data[data.length-1];
@@ -59,7 +65,7 @@ export default function Header() {
 
   const action = (
     <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
+      <Button color="secondary" size="small" onClick={() => updateLike()}>
         LIKE
       </Button>
       <IconButton
