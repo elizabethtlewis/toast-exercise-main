@@ -28,10 +28,20 @@ export function createFormSubmission() {
 }
 
 export default function Header() {
+
   const [open, setOpen] = React.useState(false);
+  const [form, setForm] = React.useState({
+    id: '',
+    data: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      liked: false,
+    },
+  });
 
   const handleClick = () => {
-    saveFormSubmission(createFormSubmission());
+    setForm(createFormSubmission())
     setOpen(true);
   };
 
@@ -45,20 +55,14 @@ export default function Header() {
   // TODO
   // updateLike changes the 'liked' param in the current formSubmission to true
   function updateLike() {
+    saveFormSubmission(form);
     handleClose();
   }
 
   // This function retrieves the users first name, last name, and email from local storage
   function getContent() {
-
-    // console.log(localStorage.getItem('formSubmissions'))
-    // console.log(JSON.parse(localStorage.getItem('formSubmissions')));
-
-    let data = JSON.parse(localStorage.getItem('formSubmissions'));
-    data = data[data.length-1];
-
     let result = "";
-    result = result.concat(data.data['firstName'], " ", data.data['lastName'], " ", data.data['email']);
+    result = result.concat(form.data['firstName'], " ", form.data['lastName'], " ", form.data['email']);
 
     return result;
   }
@@ -72,7 +76,7 @@ export default function Header() {
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={handleClose}
+        onClick={() => handleClose}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
