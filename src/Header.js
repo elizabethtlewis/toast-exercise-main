@@ -12,7 +12,7 @@ import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 import { saveFormSubmission } from './service/mockServer';
 
-
+// Creates a form submission with random data
 export function createFormSubmission() {
   const chance = new Chance();
   let formSubmission = {
@@ -52,8 +52,7 @@ export default function Header() {
     setOpen(false);
   };
 
-  // TODO
-  // updateLike changes the 'liked' param in the current formSubmission to true
+  // When 'Like' is clicked save the current form
   function updateLike() {
     saveFormSubmission(form);
     handleClose();
@@ -63,10 +62,9 @@ export default function Header() {
   function getContent() {
     let result = "";
     result = result.concat(form.data['firstName'], " ", form.data['lastName'], " ", form.data['email']);
-
     return result;
   }
-
+  // Snackbar button
   const action = (
     <React.Fragment>
       <Button color="secondary" size="small" onClick={() => updateLike()}>
