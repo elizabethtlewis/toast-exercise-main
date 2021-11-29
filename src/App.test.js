@@ -7,3 +7,15 @@ test('renders header text', () => {
   const linkElement = getByText(/toast exercise/i);
   expect(linkElement).toBeInTheDocument();
 });
+
+test('renders title', () => {
+  const { getByText } = render(<App />);
+  const title = getByText(/Liked Form Submissions/i);
+  expect(title).toBeInTheDocument();
+})
+
+test('renders table', () => {
+  const { getByText } = render(<App />);
+  const table = getByText(/Form ID/i);
+  expect(table).toBeInTheDocument();
+})
