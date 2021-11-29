@@ -2,7 +2,15 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { fetchLikedFormSubmissions } from './service/mockServer';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import './Content.css'
+// import { fetchLikedFormSubmissions } from './service/mockServer';
 
 export default function Content() {
 
@@ -31,7 +39,7 @@ export default function Content() {
 
   useInterval(() => {
     setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[]);
-  }, 200);
+  }, 500);
 
   const handleClick = () => {
     setForms([]);
@@ -42,6 +50,7 @@ export default function Content() {
 
     <Box sx={{marginTop: 3}}>
       <Typography variant="h4">Liked Form Submissions</Typography>
+      <div className = 'clear-button'>
       <Button
         variant="contained"
         size="small"
@@ -49,16 +58,33 @@ export default function Content() {
         onClick={handleClick}
       >Clear All Forms
       </Button>
-      {likedforms.map(likedforms => 
-      <ol key = { likedforms.id }>
-        <p className = "name">
-          {likedforms.data['firstName']+" "}
-          {likedforms.data['lastName']}
-        </p>
-        <p>{likedforms.data['email']}</p>
-        <hr></hr>
-      </ol>
-      )}
+      </div>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Form ID </TableCell>
+            <TableCell align="right">First Name</TableCell>
+            <TableCell align="right">Last Name</TableCell>
+            <TableCell align="right">Email</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+        {likedforms.slice(0).reverse().map(likedforms =>
+          <TableRow
+            key={likedforms.id}
+          >
+            <TableCell>{likedforms.id}</TableCell>
+            <TableCell align="right">{likedforms.data['firstName']}</TableCell>
+            <TableCell align="right">{likedforms.data['lastName']}</TableCell>
+            <TableCell align="right">{likedforms.data['email']}</TableCell>
+          </TableRow>
+        )}
+        </TableBody>
+      </Table>
+    </TableContainer>
     </Box>
   );
 }
