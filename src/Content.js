@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -10,7 +11,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './Content.css'
-// import { fetchLikedFormSubmissions } from './service/mockServer';
 
 export default function Content() {
 
@@ -41,6 +41,7 @@ export default function Content() {
     setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[]);
   }, 500);
 
+  // Clears forms if 'Clear All Forms' button is clicked
   const handleClick = () => {
     setForms([]);
     localStorage.clear();
