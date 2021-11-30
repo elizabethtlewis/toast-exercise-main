@@ -35,10 +35,28 @@ export default function Content() {
     }, [delay]);
   }
 
-  const [likedforms, setForms] = React.useState([]);
+  const [likedforms, setForms] = React.useState([[{
+    id: '',
+    data: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      liked: false,
+    },
+  }
+  ]]);
 
   useInterval(() => {
-    setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[]);
+    setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[{
+        id: '',
+        data: {
+          email: '',
+          firstName: '',
+          lastName: '',
+          liked: false,
+        },
+      }
+    ]);
   }, 500);
 
   // Clears forms if 'Clear All Forms' button is clicked
