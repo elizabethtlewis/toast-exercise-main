@@ -35,27 +35,19 @@ export default function Content() {
     }, [delay]);
   }
 
-  const [likedforms, setForms] = React.useState([[{
-    id: '',
+  const [likedforms, setForms] = React.useState([{
+    id: 'Loading',
     data: {
-      email: '',
-      firstName: '',
-      lastName: '',
-      liked: false,
+      email: 'Loading',
+      firstName: 'Loading',
+      lastName: 'Loading',
+      liked: 'Loading',
     },
   }
-  ]]);
+  ]);
 
   useInterval(() => {
-    setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[{
-        id: '',
-        data: {
-          email: '',
-          firstName: '',
-          lastName: '',
-          liked: false,
-        },
-      }
+    setForms(JSON.parse(localStorage.getItem('formSubmissions'))||[
     ]);
   }, 500);
 
