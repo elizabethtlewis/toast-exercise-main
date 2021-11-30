@@ -88,9 +88,9 @@ export default function Content() {
             key={likedforms.id}
           >
             <TableCell>{likedforms.id}</TableCell>
-            <TableCell align="right">{likedforms.data['firstName']}</TableCell>
-            <TableCell align="right">{likedforms.data['lastName']}</TableCell>
-            <TableCell align="right">{likedforms.data['email']}</TableCell>
+            <TableCell align="right">{likedforms.data?.firstName}</TableCell>
+            <TableCell align="right">{likedforms.data?.lastName}</TableCell>
+            <TableCell align="right">{likedforms.data?.email}</TableCell>
           </TableRow>
         )}
         </TableBody>
